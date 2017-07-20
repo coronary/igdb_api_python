@@ -4,6 +4,19 @@ One of the principles behind IGDB.com is accessibility of data. We wish to share
 
 Thus, you are not only contributing to the value of this site but to hundreds of other projects as well. We are looking forward to see what exciting game related projects you come up with. Happy coding!
 
-More info here:
+More info here: https://www.igdb.com/api
 
-https://www.igdb.com/api
+Since we do not have a wrapper yet. This is a simple example how to communicate with the API in Python 3.
+
+
+```python
+import requests
+url = 'https://api-2445582011268.apicast.io/pulses/'
+headers = {
+    'user-key': 'YOUR_KEY',
+    'Accept' : 'application/json'
+}
+r = requests.get(url, headers=headers)
+print(r.status_code)
+print(r.text)
+```
