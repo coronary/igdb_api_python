@@ -8,7 +8,7 @@ setup(
   author = 'Sander Brauwers',
   author_email = 'sander.brauwers@igdb.com',
   url = 'https://github.com/igdb/igdb_api_python', # use the URL to the github repo
-  download_url = 'https://github.com/igdb/igdb_api_python/releases/tag/0.21.tar.gz', # I'll explain this in a second
+  download_url = 'https://github.com/igdb/igdb_api_python/releases/tag/0.302.tar.gz', # I'll explain this in a second
   keywords = ['igdb', 'videogame', 'api','database'], # arbitrary keywords
   classifiers = [],
   install_requires=[
