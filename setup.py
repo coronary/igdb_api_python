@@ -7,7 +7,7 @@ with open('requirements.txt') as requirements_file:
 setup(
   name = 'igdb_api_python',
   packages = ['igdb_api_python'], # this must be the same as the name above
-  version = '0.22',
+  version = '0.301',
   description = 'Python wrapper for IGDB.com API',
   author = 'Sander Brauwers',
   author_email = 'sander.brauwers@igdb.com',
