@@ -4,11 +4,11 @@ import requests
 import json
 
 class igdb:
-
-    #ENTER YOUR API KEY HERE
+    
     __api_key = ""
 
-    def __init__(self):
+    def __init__(self,api_key):
+        self.__api_key = api_key
         if self.__api_key == "":
             print("Please provide your key from api.igdb.com")
             exit()
