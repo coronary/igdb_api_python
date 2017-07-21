@@ -7,7 +7,7 @@ Example on how to use it
 ```python
 from igdb_api_python import igdb
 
-igdb = igdb("af95de8b0f345cf9fb3c141e5c874546")
+igdb = igdb("YOUR_KEY")
 result = igdb.games(1942)
 
 for game in result:
