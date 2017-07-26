@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/igdb/igdb_api_python.svg?branch=master)](https://travis-ci.org/igdb/igdb_api_python)
+[![Coverage Status](https://coveralls.io/repos/github/igdb/igdb_api_python/badge.svg?branch=master)](https://coveralls.io/github/igdb/igdb_api_python?branch=master)
+
 To use this wrapper
 
 `pip install igdb_api_python`
