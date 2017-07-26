@@ -5,6 +5,10 @@ install:
   - pip install requests
   - pip install pytest
   - pip install python-coveralls
-script: pytest
+  - pip install coverage       # Add me to install coverage.py
+  - pip install nose           # Add me to install nose
+script:
+  - pytest
+  - nosetests --with-coverage # Add me to run nose with coverage support.
 after_success:
   - coveralls
