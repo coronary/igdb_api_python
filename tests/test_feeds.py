@@ -5,10 +5,10 @@ from igdb_api_python.igdb import igdb as igdb
 igdb = igdb(os.environ['api_key'])
 
 def test_singleFeed():
-    result = igdb.callApi("feeds", 25039)
-    assert result.status_code == 200
+    result = igdb.feeds(129989)
+    assert result != []
 def test_singleFeed():
-    result = igdb.callApi("feeds",{
-        'ids':[25044,25042,25041]
+    result = igdb.feeds({
+        'ids':[129993,129992,129985]
     })
-    assert result.status_code == 200
+    assert result != []

@@ -5,10 +5,10 @@ from igdb_api_python.igdb import igdb as igdb
 igdb = igdb(os.environ['api_key'])
 
 def test_singleCompany():
-    result = igdb.callApi("companies", 25039)
-    assert result.status_code == 200
+    result = igdb.companies(2238)
+    assert result != []
 def test_multipleCompany():
-    result = igdb.callApi("companies",{
-        'ids':[25044,25042,25041]
+    result = igdb.companies({
+        'ids':[2239,2240,2242]
     })
-    assert result.status_code == 200
+    assert result != []

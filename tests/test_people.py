@@ -5,10 +5,10 @@ from igdb_api_python.igdb import igdb as igdb
 igdb = igdb(os.environ['api_key'])
 
 def test_singlePeople():
-    result = igdb.callApi("people", 25039)
-    assert result.status_code == 200
+    result = igdb.people(50)
+    assert result != []
 def test_multiplePeople():
-    result = igdb.callApi("people",{
-        'ids':[25044,25042,25041]
+    result = igdb.people({
+        'ids':[69159,69153,25041]
     })
-    assert result.status_code == 200
+    assert result != []

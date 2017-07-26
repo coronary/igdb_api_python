@@ -5,10 +5,10 @@ from igdb_api_python.igdb import igdb as igdb
 igdb = igdb(os.environ['api_key'])
 
 def test_singlePage():
-    result = igdb.callApi("pages", 25039)
-    assert result.status_code == 200
+    result = igdb.pages(5)
+    assert result != []
 def test_multiplePage():
-    result = igdb.callApi("pages",{
-        'ids':[25044,25042,25041]
+    result = igdb.pages({
+        'ids':[50,10,45]
     })
-    assert result.status_code == 200
+    assert result != []

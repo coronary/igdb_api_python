@@ -5,10 +5,10 @@ from igdb_api_python.igdb import igdb as igdb
 igdb = igdb(os.environ['api_key'])
 
 def test_singleCollection():
-    result = igdb.callApi("collections", 25039)
-    assert result.status_code == 200
+    result = igdb.collections(1194)
+    assert result != []
 def test_multipleCollection():
-    result = igdb.callApi("collections",{
-        'ids':[25044,25042,25041]
+    result = igdb.collections({
+        'ids':[1198,1199,1200]
     })
-    assert result.status_code == 200
+    assert result != []

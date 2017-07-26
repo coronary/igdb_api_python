@@ -5,10 +5,10 @@ from igdb_api_python.igdb import igdb as igdb
 igdb = igdb(os.environ['api_key'])
 
 def test_singleKeyword():
-    result = igdb.callApi("keywords", 25039)
-    assert result.status_code == 200
+    result = igdb.keywords(1083)
+    assert result != []
 def test_multipleKeyword():
-    result = igdb.callApi("keywords",{
-        'ids':[25044,25042,25041]
+    result = igdb.keywords({
+        'ids':[1086,1090,193]
     })
-    assert result.status_code == 200
+    assert result != []
