@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/igdb/igdb_api_python.svg?branch=master)](https://travis-ci.org/igdb/igdb_api_python)
 [![Coverage Status](https://coveralls.io/repos/github/igdb/igdb_api_python/badge.svg?branch=master)](https://coveralls.io/github/igdb/igdb_api_python?branch=master)
+[![PyPI version](https://badge.fury.io/py/igdb-api-python.svg)](https://badge.fury.io/py/igdb-api-python)
 
 To use this wrapper
 
