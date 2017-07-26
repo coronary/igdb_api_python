@@ -4,9 +4,11 @@ from igdb_api_python.igdb import igdb as igdb
 
 igdb = igdb(os.environ['api_key'])
 
-def test_singleGame():
-    result = igdb.callApi("games", ids=1942)
+def test_singlePage():
+    result = igdb.callApi("pages", 25039)
     assert result.status_code == 200
-def test_multipleGames():
-    result = igdb.callApi("games",ids=[27193,23212,1942])
+def test_multiplePage():
+    result = igdb.callApi("pages",{
+        'ids':[25044,25042,25041]
+    })
     assert result.status_code == 200

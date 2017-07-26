@@ -13,34 +13,34 @@ class igdb:
             print("Please provide your key from api.igdb.com")
             exit()
 
-
     #CALL TO THE API
-    def callApi(self,endpoint,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-
+    def callApi(self,endpoint,args):
+        ids     = ""
+        fields  = "*"
+        order   = ""
+        filters = ""
         #If array, convert it to komma seperated string
-        if type(ids) != int:
-            ids = ",".join(map(str,ids))
+        if type(args) != int:
+            if 'ids' in args:
+                if type(args['ids']) != int:
+                    ids = ",".join(map(str,args['ids']))
+                else:
+                    ids = args['ids']
+            if 'fields' in args:
+                if type(args['fields']) != str:
+                    fields = ",".join(map(str,args['fields']))
+                else:
+                    fields = args['fields']
+            if 'order' in args:
+                order = "&order=" + str(args['order'])
+            if 'filters' in args:
+                #ids = ",".join(map(str,ids))
+                for key, value in args['filters'].items():
+                    filters = filters + "&filter" + key + "=" + str(value)
+        else:
+            ids = args
 
-        all_filters = ""
-        #If has multiple filters
-        if type(filters) != str:
-            #ids = ",".join(map(str,ids))
-            for key, value in filters.items():
-                all_filters = all_filters + "&filter" + key + "=" + str(value)
-
-        #If has orders
-        if order:
-            order = "&order=" + str(order)
-        #If has limit
-        if limit:
-            limit = "&limit=" + str(limit)
-
-        #If has offset
-        if offset:
-            offset = "&offset=" + str(offset)
-
-        url = 'https://api-2445582011268.apicast.io/'+ endpoint + "/" + str(ids) + "?fields=" + str(fields) + all_filters   + str(params) +str(order)+str(limit)+str(offset)
-
+        url = 'https://api-2445582011268.apicast.io/'+ endpoint + "/" + str(ids) + "?fields=" + str(fields)+ str(order)+ str(filters)
         print(url)
 
         headers = {
@@ -54,97 +54,97 @@ class igdb:
         return r
 
     #GAMES
-    def games(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("games",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def games(self,args=""):
+        r = self.callApi("games",args)
         r = json.loads(r.text)
         return r
     #PULSE
-    def pulses(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("pulses",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def pulses(self,args=""):
+        r = self.callApi("pulses",args)
         r = json.loads(r.text)
         return r
     #CHARACTERS
-    def characters(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("characters",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def characters(self,args=""):
+        r = self.callApi("characters",args=args)
         r = json.loads(r.text)
         return r
     #COLLECTIONS
-    def collections(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("collections",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def collections(self,args=""):
+        r = self.callApi("collections",args=args)
         r = json.loads(r.text)
         return r
     #COMPANIES
-    def companies(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("companies",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def companies(self,args=""):
+        r = self.callApi("companies",args=args)
         r = json.loads(r.text)
         return r
     #FRANCHISES
-    def franchises(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("franchises",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def franchises(self,args=""):
+        r = self.callApi("franchises",args=args)
         r = json.loads(r.text)
         return r
     #FEEDS
-    def feeds(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("feeds",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def feeds(self,args=""):
+        r = self.callApi("feeds",args=args)
         r = json.loads(r.text)
         return r
     #PAGES
-    def pages(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("pages",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def pages(self,args=""):
+        r = self.callApi("pages",args=args)
         r = json.loads(r.text)
         return r
     #GAME_ENGINES
-    def game_engines(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("game_engines",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def game_engines(self,args=""):
+        r = self.callApi("game_engines",args=args)
         r = json.loads(r.text)
         return r
     #GAME_MODES
-    def game_modes(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("game_modes",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def game_modes(self,args=""):
+        r = self.callApi("game_modes",args=args)
         r = json.loads(r.text)
         return r
     #GENRES
-    def genres(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("genres",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def genres(self,args=""):
+        r = self.callApi("genres",args=args)
         r = json.loads(r.text)
         return r
     #KEYWORDS
-    def keywords(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("keywords",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def keywords(self,args=""):
+        r = self.callApi("keywords",args=args)
         r = json.loads(r.text)
         return r
     #PEOPLE
-    def people(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("people",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def people(self,args=""):
+        r = self.callApi("people",args=args)
         r = json.loads(r.text)
         return r
     #PLATFORMS
-    def platforms(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("platforms",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def platforms(self,args=""):
+        r = self.callApi("platforms",args=args)
         r = json.loads(r.text)
         return r
     #PLAYER_PERSPECTIVES
-    def player_perspectives(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("player_perspectives",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def player_perspectives(self,args=""):
+        r = self.callApi("player_perspectives",args=args)
         r = json.loads(r.text)
         return r
     #PULSE_GROUPS
-    def keywords(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("pulse_groups",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def keywords(self,args=""):
+        r = self.callApi("pulse_groups",args=args)
         r = json.loads(r.text)
         return r
     #RELEASE_DATES
-    def release_dates(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("release_dates",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
-        r = json.loads(r.text)
-        return r
-    #REVIEWS
-    def reviews(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("reviews",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def release_dates(self,args=""):
+        r = self.callApi("release_dates",args=args)
         r = json.loads(r.text)
         return r
     #THEMES
-    def themes(self,ids="",fields="*",params="",order="",filters="",limit="",offset=""):
-        r = self.callApi("themes",ids=ids,fields=fields,params=params,order=order,filters=filters,limit=limit,offset=offset)
+    def themes(self,args=""):
+        r = self.callApi("themes",args=args)
+        r = json.loads(r.text)
+        return r
+    #REVIEWS
+    def reviews(self,args=""):
+        r = self.callApi("reviews",args=args)
         r = json.loads(r.text)
         return r
