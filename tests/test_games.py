@@ -6,6 +6,7 @@ igdb = igdb(os.environ['api_key'])
 
 def test_singleGame():
     result = igdb.games(1942)
+    assert result != ""
 def test_multipleGames():
     result = igdb.callApi("games",{
         'ids':[27193,23212,1942]
