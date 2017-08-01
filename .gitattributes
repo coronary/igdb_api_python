@@ -1,0 +1,6 @@
+/tests export-ignore
+requirements.txt export-ignore
+.travis* export-ignore
+setup.* export-ignore
+example.py export-ignore
+.cover* export-ignore
