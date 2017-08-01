@@ -9,9 +9,6 @@ class igdb:
 
     def __init__(self,api_key):
         self.__api_key = api_key
-        if self.__api_key == "":
-            print("Please provide your key from api.igdb.com")
-            exit()
 
     #CALL TO THE API
     def call_api(self,endpoint,args):
