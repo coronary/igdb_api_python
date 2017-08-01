@@ -31,13 +31,12 @@ class igdb:
             if 'order' in args:
                 order = "&order=" + str(args['order'])
             if 'filters' in args:
-                #ids = ",".join(map(str,ids))
                 for key, value in args['filters'].items():
                     filters = filters + "&filter" + key + "=" + str(value)
         else:
             ids = args
 
-        url = 'https://api-2445582011268.apicast.io/'+ endpoint + "/" + str(ids) + "?fields=" + str(fields)+ str(order)+ str(filters)
+        url = 'https://api-2445582011268.apicast.io/'+ endpoint + "/" + str(ids) + "?fields=" + str(fields)+ str(filters)+ str(order)
         print(url)
 
         headers = {
@@ -45,9 +44,7 @@ class igdb:
             'Accept' : 'application/json'
             }
         r = requests.get(url, headers=headers)
-        #print(r.status_code)
-        if r.status_code != 200:
-            print("!- ERROR -! " + r.status_code)
+
         return r
 
     #GAMES

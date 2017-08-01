@@ -19,3 +19,16 @@ def test_multiple_release_date():
     assert result[0]['id'] == 86660
     assert result[1]['id'] == 86663
     assert result[2]['id'] == 15683
+
+@vcr.use_cassette('tests/vcr_cassettes/release_dates/filters.yml', filter_headers=['user-key'])
+def test_multiple_release_date():
+    result = igdb.release_dates({
+        'filters' :{
+            "[platform][eq]": 48,
+            "[date][gt]"    : 1501586921000
+        },
+        'fields':"game",
+        'order': 'date:asc'
+    })
+    assert result != []
+    assert result[0]['game'] == 11797
