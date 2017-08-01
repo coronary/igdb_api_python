@@ -125,14 +125,24 @@ class igdb:
         r = self.call_api("player_perspectives",args=args)
         r = json.loads(r.text)
         return r
-    #PULSE_GROUPS
+    #KEYWORDS
     def keywords(self,args=""):
-        r = self.call_api("pulse_groups",args=args)
+        r = self.call_api("keywords",args=args)
         r = json.loads(r.text)
         return r
     #RELEASE_DATES
     def release_dates(self,args=""):
         r = self.call_api("release_dates",args=args)
+        r = json.loads(r.text)
+        return r
+    #PULSE GROUPS
+    def pulse_groups(self,args=""):
+        r = self.call_api("pulse_groups",args=args)
+        r = json.loads(r.text)
+        return r
+    #PULSE SOURCES
+    def pulse_sources(self,args=""):
+        r = self.call_api("pulse_sources",args=args)
         r = json.loads(r.text)
         return r
     #THEMES

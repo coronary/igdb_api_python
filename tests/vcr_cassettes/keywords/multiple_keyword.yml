@@ -7,22 +7,22 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.13.0]
     method: GET
-    uri: https://api-2445582011268.apicast.io/pulse_groups/1086,1090,193?fields=*
+    uri: https://api-2445582011268.apicast.io/keywords/1086,1090,193?fields=*
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAACA42SQWvDIBTHv0rw7EGfT5/mPAaFnbrBDiUM17i00CbFpIdt9LvPrGnarB2bIvwe
-        T+H9f7j4ZOuS5VJYw1ntt4Hl7KFZNvN0MsjmYevbLsRQMs6WvgtVE9/T9VTEkMryxXepREcGHQKC
-        1Jztd+Vvrd3+dbNuV5MmStEvzjpftSxfWKEVKi11wVn1PZEiidQ/3rShvyHRWEvFgZ+Gd2Ic/tnH
-        ZfRvXTabzfLsaRWy+9h8hDphbOrwnxg6yXC3YwytWzGACC5jSOJgbAqCZiSSXCtjKSW2A8FIqE6k
-        BQ6U9kBO6CMBKBhJDYToTmQk7w0Ko4XkUpAilBZolCnTo6lKMmeVTo0m75KZVfbYRV+X67r6w5xx
-        QBaFcXRl7rJ1Zc444X58gDS25aMMKY6BQDsF5xROG5zkAAG2OBRfp3XmHNECAAA=
+        H4sIAAAAAAACA42SXWrDMBCErxL0vKml1b+vEkJRbOMK7CTYCimU3L0r1w5O2kJexqDdHeYbvPti
+        sWal4M4AO4a+YSXr42dTb/owpBi6DX1GBqwampCa+j0k2lZcaC2F9tJIYJdz/d9o7C7t4ridHbez
+        42XoaPSR0nksi+J6vb7Ftj68Vae+qMivPQ2xGYs/T1sKOrJyZ5FzsIg2i8viAS2Xbn+DBczzO1gV
+        hnpzCCl1zW8iFN4ZI23efyJaj2aibLW9W72G8nizMAhrEazkCA6FBsGV9iAEGk5KgKC0sSCcURrQ
+        5AzCGm8AlfIy006KlqbCOUAn/Y9mF8VXVdDi0kQaQjzGY/tcg6QKJVeUgUI81vA4mmtY+bzWwepg
+        KYBiE192RaPpp0HFNT1YNTVgSFE54Sb1WXF60bSJPl8JggWJAtX+tv8GIdTU2tECAAA=
     headers:
       Connection: [keep-alive]
       Content-Encoding: [gzip]
-      Content-Length: ['332']
+      Content-Length: ['335']
       Content-Type: [application/json]
-      Date: ['Tue, 01 Aug 2017 09:54:34 GMT']
+      Date: ['Tue, 01 Aug 2017 11:17:12 GMT']
       Server: [openresty/1.9.15.1]
       X-Powered-By: ['3scale API Management - http://www.3scale.net']
     status: {code: 200, message: OK}
