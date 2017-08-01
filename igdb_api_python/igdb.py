@@ -6,6 +6,7 @@ import json
 class igdb:
 
     __api_key = ""
+    __api_url = "https://api-2445582011268.apicast.io/"
 
     def __init__(self,api_key):
         self.__api_key = api_key
@@ -36,7 +37,7 @@ class igdb:
         else:
             ids = args
 
-        url = 'https://api-2445582011268.apicast.io/'+ endpoint + "/" + str(ids) + "?fields=" + str(fields)+ str(filters)+ str(order)
+        url = self.__api_url + endpoint + "/" + str(ids) + "?fields=" + str(fields)+ str(filters)+ str(order)
         print(url)
 
         headers = {
@@ -120,11 +121,6 @@ class igdb:
     #PLAYER_PERSPECTIVES
     def player_perspectives(self,args=""):
         r = self.call_api("player_perspectives",args=args)
-        r = json.loads(r.text)
-        return r
-    #KEYWORDS
-    def keywords(self,args=""):
-        r = self.call_api("keywords",args=args)
         r = json.loads(r.text)
         return r
     #RELEASE_DATES

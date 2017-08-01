@@ -1,4 +1,4 @@
-import pytest, os, vcr
+import pytest, os,vcr
 
 from igdb_api_python.igdb import igdb as igdb
 
