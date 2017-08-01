@@ -4,3 +4,5 @@ requirements.txt export-ignore
 setup.* export-ignore
 example.py export-ignore
 .cover* export-ignore
+LICENSE* export-ignore
+MANIFEST* export-ignore
