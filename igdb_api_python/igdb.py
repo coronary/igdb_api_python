@@ -17,6 +17,9 @@ class igdb:
         fields  = "*"
         order   = ""
         filters = ""
+        expand  = ""
+        limit   = ""
+        offset  = ""
         #If array, convert it to komma seperated string
         if type(args) != int:
             if 'ids' in args:
@@ -34,10 +37,19 @@ class igdb:
             if 'filters' in args:
                 for key, value in args['filters'].items():
                     filters = filters + "&filter" + key + "=" + str(value)
+            if 'expand' in args:
+                if type(args['expand']) != str:
+                    expand = "&expand=" + ",".join(map(str,args['expand']))
+                else:
+                    expand = "&expand=" +  args['expand']
+            if 'limit' in args:
+                limit = "&limit=" + str(args['limit'])
+            if 'offset' in args:
+                offset = "&offset=" + str(args['offset'])
         else:
             ids = args
 
-        url = self.__api_url + endpoint + "/" + str(ids) + "?fields=" + str(fields)+ str(filters)+ str(order)
+        url = self.__api_url + endpoint + "/" + str(ids) + "?fields=" + str(fields)+ str(filters)+ str(order)+ str(limit)+ str(offset)+ str(expand)
         print(url)
 
         headers = {

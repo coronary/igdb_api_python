@@ -19,3 +19,22 @@ def test_multiple_pulses():
     assert result[0]['id'] == 25040
     assert result[1]['id'] == 25047
     assert result[2]['id'] == 25000
+
+@vcr.use_cassette('tests/vcr_cassettes/pulses/limit.yml', filter_headers=['user-key'])
+def test_limit():
+    result = igdb.pulses({
+        'fields':'title',
+        'limit':3,
+    })
+    assert result != []
+    assert len(result) == 3
+    assert result[0]['id'] == 25039
+
+@vcr.use_cassette('tests/vcr_cassettes/pulses/offset.yml', filter_headers=['user-key'])
+def test_offset():
+    result = igdb.pulses({
+        'fields':'title',
+        'offset':3,
+    })
+    assert result != []
+    assert result[0]['id'] == 25042

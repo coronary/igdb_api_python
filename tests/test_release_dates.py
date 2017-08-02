@@ -32,3 +32,21 @@ def test_multiple_release_date():
     })
     assert result != []
     assert result[0]['game'] == 11797
+
+@vcr.use_cassette('tests/vcr_cassettes/release_dates/single_expander.yml', filter_headers=['user-key'])
+def test_single_expander():
+    result = igdb.release_dates({
+        'ids' : 86653,
+        'expand':"game",
+    })
+    assert result != []
+    assert result[0]['game']['id'] == 38722
+@vcr.use_cassette('tests/vcr_cassettes/release_dates/multiple_expander.yml', filter_headers=['user-key'])
+def test_multiple_expander():
+    result = igdb.release_dates({
+        'ids' : 86653,
+        'expand' : ['game','platform']
+    })
+    assert result != []
+    assert result[0]['game']['id'] == 38722
+    assert result[0]['platform']['id'] == 34
