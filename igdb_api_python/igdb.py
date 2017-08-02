@@ -6,44 +6,40 @@ import json
 class igdb:
 
     __api_key = ""
+    __args = ""
     __api_url = "https://api-2445582011268.apicast.io/"
 
     def __init__(self,api_key):
         self.__api_key = api_key
 
     #CREATE URL FROM PARAMETERS
-    def joinParameters(self,values,parameter="",types="",default="",prefix=""):
-        print(values)
-        ids = default
-        if parameter in values:
-            if type(values[parameter]) != types:
-                ids = str(prefix) + ",".join(map(str,values[parameter]))
+    def joinParameters(self,parameter="",types="",default="",prefix=""):
+        if parameter in self.__args:
+            default = str(prefix)
+            if type(self.__args[parameter]) != types:
+                default += ",".join(map(str,self.__args[parameter]))
             else:
-                ids = str(prefix) + str(values[parameter])
-        return ids
-
+                default += str(self.__args[parameter])
+        return default
 
     #CALL TO THE API
     def call_api(self,endpoint,args):
-        ids     = ""
+        ids=order=filters=expand=limit=offset = ""
         fields  = "*"
-        order   = ""
-        filters = ""
-        expand  = ""
-        limit   = ""
-        offset  = ""
+        self.__args=args
+
         #If dict, convert it to komma seperated string
         if type(args) != int:
-            ids     = self.joinParameters(values=args, parameter='ids',types=int)
-            fields  = self.joinParameters(values=args, parameter='fields',types=str,default="*")
-            expand  = self.joinParameters(values=args, parameter='expand',types=str,prefix="&expand=")
-            limit   = self.joinParameters(values=args, parameter='limit',types=int,prefix="&limit=")
-            offset  = self.joinParameters(values=args, parameter='offset',types=int,prefix="&offset=")
-            order   = self.joinParameters(values=args, parameter='order',types=str,prefix="&order=")
+            ids     = self.joinParameters(parameter='ids',types=int)
+            fields  = self.joinParameters(parameter='fields',types=str,default="*")
+            expand  = self.joinParameters(parameter='expand',types=str,prefix="&expand=")
+            limit   = self.joinParameters(parameter='limit',types=int,prefix="&limit=")
+            offset  = self.joinParameters(parameter='offset',types=int,prefix="&offset=")
+            order   = self.joinParameters(parameter='order',types=str,prefix="&order=")
 
             if 'filters' in args:
                 for key, value in args['filters'].items():
-                    filters = filters + "&filter" + key + "=" + str(value)
+                    filters += "&filter" + key + "=" + str(value)
         else:
             ids = args
 
