@@ -11,6 +11,18 @@ class igdb:
     def __init__(self,api_key):
         self.__api_key = api_key
 
+    #CREATE URL FROM PARAMETERS
+    def joinParameters(self,values,parameter="",types="",default="",prefix=""):
+        print(values)
+        ids = default
+        if parameter in values:
+            if type(values[parameter]) != types:
+                ids = str(prefix) + ",".join(map(str,values[parameter]))
+            else:
+                ids = str(prefix) + str(values[parameter])
+        return ids
+
+
     #CALL TO THE API
     def call_api(self,endpoint,args):
         ids     = ""
@@ -20,32 +32,18 @@ class igdb:
         expand  = ""
         limit   = ""
         offset  = ""
-        #If array, convert it to komma seperated string
+        #If dict, convert it to komma seperated string
         if type(args) != int:
-            if 'ids' in args:
-                if type(args['ids']) != int:
-                    ids = ",".join(map(str,args['ids']))
-                else:
-                    ids = args['ids']
-            if 'fields' in args:
-                if type(args['fields']) != str:
-                    fields = ",".join(map(str,args['fields']))
-                else:
-                    fields = args['fields']
-            if 'order' in args:
-                order = "&order=" + str(args['order'])
+            ids     = self.joinParameters(values=args, parameter='ids',types=int)
+            fields  = self.joinParameters(values=args, parameter='fields',types=str,default="*")
+            expand  = self.joinParameters(values=args, parameter='expand',types=str,prefix="&expand=")
+            limit   = self.joinParameters(values=args, parameter='limit',types=int,prefix="&limit=")
+            offset  = self.joinParameters(values=args, parameter='offset',types=int,prefix="&offset=")
+            order   = self.joinParameters(values=args, parameter='order',types=str,prefix="&order=")
+
             if 'filters' in args:
                 for key, value in args['filters'].items():
                     filters = filters + "&filter" + key + "=" + str(value)
-            if 'expand' in args:
-                if type(args['expand']) != str:
-                    expand = "&expand=" + ",".join(map(str,args['expand']))
-                else:
-                    expand = "&expand=" +  args['expand']
-            if 'limit' in args:
-                limit = "&limit=" + str(args['limit'])
-            if 'offset' in args:
-                offset = "&offset=" + str(args['offset'])
         else:
             ids = args
 
@@ -57,7 +55,6 @@ class igdb:
             'Accept' : 'application/json'
             }
         r = requests.get(url, headers=headers)
-
         return r
 
     #GAMES
