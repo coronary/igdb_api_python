@@ -58,7 +58,7 @@ class igdb:
         r = self.call_api("games",args)
         r = json.loads(r.text)
         return r
-    #PULSE
+    #PULSES
     def pulses(self,args=""):
         r = self.call_api("pulses",args)
         r = json.loads(r.text)
