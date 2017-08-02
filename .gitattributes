@@ -1,3 +1,11 @@
+# In order to build run
+# git tag 0.1 -m "Adds a tag so that we can put this on PyPI."
+# git push --tags origin master
+# This created a release on github
+# Then run
+# python setup.py sdist upload -r pypi
+# This will put it on pypi
+
 /tests export-ignore
 requirements.txt export-ignore
 .travis* export-ignore
