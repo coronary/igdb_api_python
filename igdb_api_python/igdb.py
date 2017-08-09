@@ -70,6 +70,8 @@ class igdb:
 
     #GAME SEARCH BY NAME
     def game_search(self, args=""):
+        """This function is used to search for game id by its name
+        will return a list of dictionaries like: [{u'id': 123}, ...]"""
         r = self.call_api('games_search', args)
         r = json.loads(r.text)
         return r
