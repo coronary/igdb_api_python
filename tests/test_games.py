@@ -46,3 +46,10 @@ def test_multiple_field():
     })
     assert result != []
     assert len(result[0]) == 3
+
+@vcr.use_cassette('tests/vcr_cassettes/games/game_search.yml')
+def test_game_search_multi_and_single():
+    result = igdb.game_search('zelda')
+    assert result != []
+    assert type(result[0]) == dict
+    assert result[0].get('id')
