@@ -2,6 +2,7 @@
 
 import requests
 import json
+import consts
 
 
 class igdb:
@@ -21,6 +22,10 @@ class igdb:
             else:
                 default += str(self.__args[parameter])
         return default
+
+    def prepare_game_search_url(self):
+        url = self.__api_url + consts.GAME_SEARCH_URL + self.__args
+        return url
 
     # CALL TO THE API
     def call_api(self, endpoint, args):
@@ -43,8 +48,11 @@ class igdb:
         else:
             ids = args
 
-        url = self.__api_url + endpoint + "/" + str(ids) + "?fields=" + str(fields) + str(filters) + str(order) + str(
-            limit) + str(offset) + str(expand)
+        if endpoint == 'games_search':
+            url = self.prepare_game_search_url()
+        else:
+            url = self.__api_url + endpoint + "/" + str(ids) + "?fields=" + str(fields) + str(filters) + str(
+                order) + str(limit) + str(offset) + str(expand)
         print(url)
 
         headers = {
@@ -57,6 +65,12 @@ class igdb:
     # GAMES
     def games(self, args=""):
         r = self.call_api("games", args)
+        r = json.loads(r.text)
+        return r
+
+    #GAME SEARCH BY NAME
+    def game_search(self, args=""):
+        r = self.call_api('games_search', args)
         r = json.loads(r.text)
         return r
 
