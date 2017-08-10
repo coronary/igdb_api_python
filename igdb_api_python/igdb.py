@@ -2,8 +2,7 @@
 
 import requests
 import json
-import consts
-
+from igdb_api_python.consts import GAME_SEARCH_URL
 
 class igdb:
     __api_key = ""
@@ -24,7 +23,7 @@ class igdb:
         return default
 
     def prepare_game_search_url(self):
-        url = self.__api_url + consts.GAME_SEARCH_URL + self.__args
+        url = self.__api_url + GAME_SEARCH_URL + self.__args
         return url
 
     # CALL TO THE API
