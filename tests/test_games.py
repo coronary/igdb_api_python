@@ -46,3 +46,14 @@ def test_multiple_field():
     })
     assert result != []
     assert len(result[0]) == 3
+
+@vcr.use_cassette('tests/vcr_cassettes/games/search.yml')
+def test_game_search_multi_and_single():
+    result = igdb.games({
+        'search': "battlefield 1",
+        'fields' : 'name'
+    })
+    print(result)
+    assert result != []
+    assert result[0]['id'] == 18320
+    assert type(result[0]) == dict

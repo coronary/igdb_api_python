@@ -19,3 +19,14 @@ def test_multiple_platform():
     assert result[0]['id'] == 13
     assert result[1]['id'] == 5
     assert result[2]['id'] == 3
+
+@vcr.use_cassette('tests/vcr_cassettes/platforms/search.yml')
+def test_game_search_multi_and_single():
+    result = igdb.platforms({
+        'search': "xbox one",
+        'fields' : 'name'
+    })
+    print(result)
+    assert result != []
+    assert result[0]['id'] == 49
+    assert type(result[0]) == dict

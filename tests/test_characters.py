@@ -20,3 +20,14 @@ def test_multiple_character():
     assert result[0]['id'] == 8530
     assert result[1]['id'] == 8531
     assert result[2]['id'] == 8533
+
+@vcr.use_cassette('tests/vcr_cassettes/characters/search.yml')
+def test_game_search_multi_and_single():
+    result = igdb.characters({
+        'search': "geralt of rivia",
+        'fields' : 'name'
+    })
+    print(result)
+    assert result != []
+    assert result[0]['id'] == 1453
+    assert type(result[0]) == dict
