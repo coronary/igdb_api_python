@@ -9,9 +9,9 @@ To use this wrapper
 Example on how to use it
 
 ```python
-from igdb_api_python import igdb
+from igdb_api_python.igdb import igdb
 
-igdb = igdb.igdb("YOUR_KEY")
+igdb = igdb("YOUR_KEY")
 result = igdb.games(1942)
 
 for game in result:
