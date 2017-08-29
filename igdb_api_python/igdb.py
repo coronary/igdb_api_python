@@ -178,3 +178,15 @@ class igdb:
         r = self.call_api("reviews", args=args)
         r = json.loads(r.text)
         return r
+
+    # TITLES
+    def titles(self, args=""):
+        r = self.call_api("titles", args=args)
+        r = json.loads(r.text)
+        return r
+
+    # TITLES
+    def credits(self, args=""):
+        r = self.call_api("credits", args=args)
+        r = json.loads(r.text)
+        return r
