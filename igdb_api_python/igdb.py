@@ -35,7 +35,7 @@ class igdb:
             limit = self.joinParameters(parameter='limit', types=int, prefix="&limit=")
             offset = self.joinParameters(parameter='offset', types=int, prefix="&offset=")
             order = self.joinParameters(parameter='order', types=str, prefix="&order=")
-            search = self.joinParameters(parameter='search', types=str, prefix="/?search=")
+            search = self.joinParameters(parameter='search', types=str, prefix="?search=")
 
             if 'filters' in args:
                 for key, value in args['filters'].items():
@@ -43,13 +43,10 @@ class igdb:
         else:
             ids = args
 
-        # If has search arg
-        if search != "":
-            url = self.__api_url + endpoint + str(search) + "&fields=" + str(fields) + str(filters) + str(
-                order) + str(limit) + str(offset) + str(expand)
-        else:
-            url = self.__api_url + endpoint + "/" + str(ids) + "?fields=" + str(fields) + str(filters) + str(
-                order) + str(limit) + str(offset) + str(expand)
+        # Build URL
+        url = self.__api_url + endpoint + "/" + str(search) + str(ids)
+        url += "&" if search != "" else "?"
+        url += "fields=" + str(fields) + str(filters) + str(order) + str(limit) + str(offset) + str(expand)
         print(url)
 
         headers = {
