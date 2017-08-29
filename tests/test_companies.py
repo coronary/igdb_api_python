@@ -19,3 +19,14 @@ def test_multiple_company():
     assert result[0]['id'] == 2239
     assert result[1]['id'] == 2240
     assert result[2]['id'] == 2242
+
+@vcr.use_cassette('tests/vcr_cassettes/companies/search.yml')
+def test_game_search_multi_and_single():
+    result = igdb.companies({
+        'search': "ea",
+        'fields' : 'name'
+    })
+    print(result)
+    assert result != []
+    assert result[0]['id'] == 277
+    assert type(result[0]) == dict

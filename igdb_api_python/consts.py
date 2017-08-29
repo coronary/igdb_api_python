@@ -1,1 +1,0 @@
-GAME_SEARCH_URL = 'games/?search='

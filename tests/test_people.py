@@ -19,3 +19,14 @@ def test_multiple_people():
     assert result[0]['id'] == 69159
     assert result[1]['id'] == 69153
     assert result[2]['id'] == 25041
+
+@vcr.use_cassette('tests/vcr_cassettes/people/search.yml')
+def test_game_search_multi_and_single():
+    result = igdb.people({
+        'search': "gabe newell",
+        'fields' : 'name'
+    })
+    print(result)
+    assert result != []
+    assert result[0]['id'] == 108558
+    assert type(result[0]) == dict
