@@ -2,7 +2,6 @@
 
 import requests
 import json
-from igdb_api_python.consts import GAME_SEARCH_URL
 
 class igdb:
     __api_key = ""
@@ -22,13 +21,9 @@ class igdb:
                 default += str(self.__args[parameter])
         return default
 
-    def prepare_game_search_url(self):
-        url = self.__api_url + GAME_SEARCH_URL + self.__args
-        return url
-
     # CALL TO THE API
     def call_api(self, endpoint, args):
-        ids = order = filters = expand = limit = offset = ""
+        ids = order = filters = expand = limit = offset = search = ""
         fields = "*"
         self.__args = args
 
@@ -40,6 +35,7 @@ class igdb:
             limit = self.joinParameters(parameter='limit', types=int, prefix="&limit=")
             offset = self.joinParameters(parameter='offset', types=int, prefix="&offset=")
             order = self.joinParameters(parameter='order', types=str, prefix="&order=")
+            search = self.joinParameters(parameter='search', types=str, prefix="/?search=")
 
             if 'filters' in args:
                 for key, value in args['filters'].items():
@@ -47,8 +43,10 @@ class igdb:
         else:
             ids = args
 
-        if endpoint == 'games_search':
-            url = self.prepare_game_search_url()
+        # If has search arg
+        if search != "":
+            url = self.__api_url + endpoint + str(search) + "&fields=" + str(fields) + str(filters) + str(
+                order) + str(limit) + str(offset) + str(expand)
         else:
             url = self.__api_url + endpoint + "/" + str(ids) + "?fields=" + str(fields) + str(filters) + str(
                 order) + str(limit) + str(offset) + str(expand)
@@ -64,14 +62,6 @@ class igdb:
     # GAMES
     def games(self, args=""):
         r = self.call_api("games", args)
-        r = json.loads(r.text)
-        return r
-
-    #GAME SEARCH BY NAME
-    def game_search(self, args=""):
-        """This function is used to search for game id by its name
-        will return a list of dictionaries like: [{u'id': 123}, ...]"""
-        r = self.call_api('games_search', args)
         r = json.loads(r.text)
         return r
 
