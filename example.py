@@ -47,3 +47,15 @@ result = igdb.companies({
     'offset': 5,
     'order': 'name:desc'
 })
+
+#expand game and platform
+result = igdb.release_dates({
+    'ids' : 86653,
+    'expand' : ['game','platform']
+})
+
+# Expand game
+result = igdb.release_dates({
+    'ids' : 86653,
+    'expand':"game",
+})
