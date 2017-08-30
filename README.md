@@ -14,7 +14,7 @@ from igdb_api_python.igdb import igdb
 igdb = igdb("YOUR_KEY")
 result = igdb.games(1942)
 
-for game in result:
+for game in result.body:
     print("Retrieved: " + game["name"])
 ```
 
