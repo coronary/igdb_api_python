@@ -21,9 +21,18 @@ class igdb:
                 default += str(self.__args[parameter])
         return default
 
+    def getRequest(self,url):
+        headers = {
+            'user-key': self.__api_key,
+            'Accept': 'application/json'
+        }
+        r = requests.get(self.__api_url + url, headers=headers)
+        r.body = json.loads(r.text)
+        return r
+
     # CALL TO THE API
     def call_api(self, endpoint, args):
-        ids = order = filters = expand = limit = offset = search = ""
+        ids = order = filters = expand = limit = offset = search = scroll = ""
         fields = "*"
         self.__args = args
 
@@ -36,6 +45,7 @@ class igdb:
             offset = self.joinParameters(parameter='offset', types=int, prefix="&offset=")
             order = self.joinParameters(parameter='order', types=str, prefix="&order=")
             search = self.joinParameters(parameter='search', types=str, prefix="?search=")
+            scroll = self.joinParameters(parameter='scroll', types=int, prefix="&scroll=")
 
             if 'filters' in args:
                 for key, value in args['filters'].items():
@@ -44,146 +54,123 @@ class igdb:
             ids = args
 
         # Build URL
-        url = self.__api_url + endpoint + "/" + str(search) + str(ids)
+        url = endpoint + "/" + str(search) + str(ids)
         url += "&" if search != "" else "?"
-        url += "fields=" + str(fields) + str(filters) + str(order) + str(limit) + str(offset) + str(expand)
+        url += "fields=" + str(fields) + str(filters) + str(order) + str(limit) + str(offset) + str(expand)+ str(scroll)
         print(url)
-
-        headers = {
-            'user-key': self.__api_key,
-            'Accept': 'application/json'
-        }
-        r = requests.get(url, headers=headers)
+        r = self.getRequest(url)
         return r
 
+    # Get next scroll page
+    def scroll(self,response):
+        r = self.getRequest(response.headers['x-next-page'])
+        return r
     # GAMES
     def games(self, args=""):
         r = self.call_api("games", args)
-        r = json.loads(r.text)
         return r
 
     # PULSE
     def pulses(self, args=""):
         r = self.call_api("pulses", args)
-        r = json.loads(r.text)
         return r
 
     # CHARACTERS
     def characters(self, args=""):
         r = self.call_api("characters", args=args)
-        r = json.loads(r.text)
         return r
 
     # COLLECTIONS
     def collections(self, args=""):
         r = self.call_api("collections", args=args)
-        r = json.loads(r.text)
         return r
 
     # COMPANIES
     def companies(self, args=""):
         r = self.call_api("companies", args=args)
-        r = json.loads(r.text)
         return r
 
     # FRANCHISES
     def franchises(self, args=""):
         r = self.call_api("franchises", args=args)
-        r = json.loads(r.text)
         return r
 
     # FEEDS
     def feeds(self, args=""):
         r = self.call_api("feeds", args=args)
-        r = json.loads(r.text)
         return r
 
     # PAGES
     def pages(self, args=""):
         r = self.call_api("pages", args=args)
-        r = json.loads(r.text)
         return r
 
     # GAME_ENGINES
     def game_engines(self, args=""):
         r = self.call_api("game_engines", args=args)
-        r = json.loads(r.text)
         return r
 
     # GAME_MODES
     def game_modes(self, args=""):
         r = self.call_api("game_modes", args=args)
-        r = json.loads(r.text)
         return r
 
     # GENRES
     def genres(self, args=""):
         r = self.call_api("genres", args=args)
-        r = json.loads(r.text)
         return r
 
     # KEYWORDS
     def keywords(self, args=""):
         r = self.call_api("keywords", args=args)
-        r = json.loads(r.text)
         return r
 
     # PEOPLE
     def people(self, args=""):
         r = self.call_api("people", args=args)
-        r = json.loads(r.text)
         return r
 
     # PLATFORMS
     def platforms(self, args=""):
         r = self.call_api("platforms", args=args)
-        r = json.loads(r.text)
         return r
 
     # PLAYER_PERSPECTIVES
     def player_perspectives(self, args=""):
         r = self.call_api("player_perspectives", args=args)
-        r = json.loads(r.text)
         return r
 
     # RELEASE_DATES
     def release_dates(self, args=""):
         r = self.call_api("release_dates", args=args)
-        r = json.loads(r.text)
         return r
 
     # PULSE GROUPS
     def pulse_groups(self, args=""):
         r = self.call_api("pulse_groups", args=args)
-        r = json.loads(r.text)
         return r
 
     # PULSE SOURCES
     def pulse_sources(self, args=""):
         r = self.call_api("pulse_sources", args=args)
-        r = json.loads(r.text)
         return r
 
     # THEMES
     def themes(self, args=""):
         r = self.call_api("themes", args=args)
-        r = json.loads(r.text)
         return r
 
     # REVIEWS
     def reviews(self, args=""):
         r = self.call_api("reviews", args=args)
-        r = json.loads(r.text)
         return r
 
     # TITLES
     def titles(self, args=""):
         r = self.call_api("titles", args=args)
-        r = json.loads(r.text)
         return r
 
     # TITLES
     def credits(self, args=""):
         r = self.call_api("credits", args=args)
-        r = json.loads(r.text)
         return r

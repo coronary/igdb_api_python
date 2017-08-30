@@ -7,18 +7,18 @@ igdb = igdb(os.environ['api_key'])
 @vcr.use_cassette('tests/vcr_cassettes/companies/single_company.yml', filter_headers=['user-key'])
 def test_single_company():
     result = igdb.companies(2238)
-    assert result != []
-    assert result[0]['id'] == 2238
+    assert result.body != []
+    assert result.body[0]['id'] == 2238
 
 @vcr.use_cassette('tests/vcr_cassettes/companies/multiple_company.yml', filter_headers=['user-key'])
 def test_multiple_company():
     result = igdb.companies({
         'ids':[2239,2240,2242]
     })
-    assert result != []
-    assert result[0]['id'] == 2239
-    assert result[1]['id'] == 2240
-    assert result[2]['id'] == 2242
+    assert result.body != []
+    assert result.body[0]['id'] == 2239
+    assert result.body[1]['id'] == 2240
+    assert result.body[2]['id'] == 2242
 
 @vcr.use_cassette('tests/vcr_cassettes/companies/search.yml')
 def test_game_search_multi_and_single():
@@ -27,6 +27,6 @@ def test_game_search_multi_and_single():
         'fields' : 'name'
     })
     print(result)
-    assert result != []
-    assert result[0]['id'] == 277
-    assert type(result[0]) == dict
+    assert result.body != []
+    assert result.body[0]['id'] == 277
+    assert type(result.body[0]) == dict

@@ -8,7 +8,7 @@ igdb = igdb(os.environ['api_key'])
 
 #RETRIEVE ONE GAME
 result = igdb.games(1942)
-for game in result:
+for game in result.body:
     print("Retrieved: " + game["name"])
 
 #Get information about ,multiple games
@@ -24,6 +24,7 @@ result = igdb.platforms({
     'ids':42,
     'fields' : 'games'
 })
+print(result.body)
 
 #GET PLAYSTATION GAMES
 result = igdb.platforms({
@@ -59,3 +60,18 @@ result = igdb.release_dates({
     'ids' : 86653,
     'expand':"game",
 })
+
+result = igdb.people({
+    'fields' : 'name',
+    'scroll' : 1,
+    'limit' : 50
+})
+
+#This is the first page
+print(str(result.body[0]["id"]))
+# Get page 2
+r = igdb.scroll(result)
+print(r.body)
+# Get page 3
+r = igdb.scroll(result)
+print(r.body)

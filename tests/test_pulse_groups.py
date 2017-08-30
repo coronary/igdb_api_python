@@ -7,15 +7,15 @@ igdb = igdb(os.environ['api_key'])
 @vcr.use_cassette('tests/vcr_cassettes/pulse_group/single_pulse_group.yml', filter_headers=['user-key'])
 def test_single_pulse_group():
     result = igdb.pulse_groups(5768)
-    assert result != []
-    assert result[0]['id'] == 5768
+    assert result.body != []
+    assert result.body[0]['id'] == 5768
 
 @vcr.use_cassette('tests/vcr_cassettes/pulse_group/multiple_pulse_group.yml', filter_headers=['user-key'])
 def test_multiple_pulse_group():
     result = igdb.pulse_groups({
         'ids':[5772,5775,5777]
     })
-    assert result != []
-    assert result[0]['id'] == 5772
-    assert result[1]['id'] == 5775
-    assert result[2]['id'] == 5777
+    assert result.body != []
+    assert result.body[0]['id'] == 5772
+    assert result.body[1]['id'] == 5775
+    assert result.body[2]['id'] == 5777
