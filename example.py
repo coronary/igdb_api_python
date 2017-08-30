@@ -61,6 +61,7 @@ result = igdb.release_dates({
     'expand':"game",
 })
 
+# Scroll on people
 result = igdb.people({
     'fields' : 'name',
     'scroll' : 1,
