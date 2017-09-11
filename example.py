@@ -76,3 +76,10 @@ print(r.body)
 # Get page 3
 r = igdb.scroll(result)
 print(r.body)
+
+
+#Search on games endpoint
+result = igdb.games({
+    'search': "battlefield 1",
+    'fields' : 'name'
+})
