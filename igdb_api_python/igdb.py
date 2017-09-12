@@ -170,7 +170,7 @@ class igdb:
         r = self.call_api("titles", args=args)
         return r
 
-    # TITLES
+    # CREDITS
     def credits(self, args=""):
         r = self.call_api("credits", args=args)
         return r
