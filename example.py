@@ -12,6 +12,7 @@ for game in result.body:
     print("Retrieved: " + game["name"])
 
 #Get information about ,multiple games
+# If you don't provide any fields, you will get all fields
 result = igdb.games({
     'ids':[27193,23212,1942]
 })
