@@ -17,7 +17,7 @@ result = igdb.games({
     'ids':[27193,23212,1942]
 })
 
-#Get information about ,multiple games
+#Get pulse from specific pulse id
 result = igdb.pulses(25039)
 
 #GET PLAYSTATION GAMES
