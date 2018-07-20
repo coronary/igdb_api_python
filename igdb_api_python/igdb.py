@@ -6,7 +6,7 @@ import json
 class igdb:
     __api_key = ""
     __args = ""
-    __api_url = "https://api-2445582011268.apicast.io/"
+    __api_url = "https://api-endpoint.igdb.com/"
 
     def __init__(self, api_key):
         self.__api_key = api_key
