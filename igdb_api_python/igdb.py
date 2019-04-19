@@ -6,7 +6,8 @@ import json
 class igdb:
     __api_key = ""
     __args = ""
-    __api_url = "https://api-endpoint.igdb.com/"
+#ONLY CHANGE IS UPDATED API URL SO FAR
+    __api_url = "https://api-v3.igdb.com/"
 
     def __init__(self, api_key):
         self.__api_key = api_key
